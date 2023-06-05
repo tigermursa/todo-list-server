@@ -38,7 +38,7 @@ async function run() {
     //   res.send(result);
     // });
         //1. POST/CREATE FROM HERE...
-    app.post("/users", async (req, res) => {
+    app.post("/task", async (req, res) => {
         const user = req.body;
         console.log("new user", user);
         const result = await theCollection.insertOne(user);
