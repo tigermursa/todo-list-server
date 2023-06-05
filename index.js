@@ -22,14 +22,6 @@ const client = new MongoClient(uri, {
 });
 //important note : remove try function before vercel deploy
 async function run() {
-  //   try {
-  //     // Connect the client to the server	(optional starting in v4.7)
-  //     // await client.connect();
-
-  //   } finally {
-  //     // Ensures that the client will close when you finish/error
-  //     // await client.close();
-  //     }
   const theCollection = client.db("todo").collection("todo-list");
 
   // app.get("/name", async (req, res) => {
@@ -68,26 +60,8 @@ async function run() {
     res.send(result);
   });
 
-  // updating put code  .....
-  app.put("/users/:id", async (req, res) => {
-    const id = req.params.id;
-    const user = req.body;
-    console.log("updating ", id);
-    const filter = { _id: new ObjectId(id) };
-    const options = { upsert: true };
-    const updatedUser = {
-      $set: {
-        name: user.name,
-        email: user.email,
-        photo: user.photo,
-      },
-    };
-    const result = await theCollection.updateOne(filter, updatedUser, options);
-    res.send(result);
-  });
-
   //4. DELETE FROM HERE .....
-  app.delete("/users/:id", async (req, res) => {
+  app.delete("/task/:id", async (req, res) => {
     const id = req.params.id;
     console.log("deleting ", id);
     const query = { _id: new ObjectId(id) };
@@ -101,7 +75,7 @@ async function run() {
 run().catch(console.dir);
 
 app.get("/", (req, res) => {
-  res.send("ema jhon runninng ");
+  res.send("to do running  ");
 });
 // starting the server>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 app.listen(port, () => {

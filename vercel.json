@@ -1,0 +1,18 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "./index.js",
+        "use": "@vercel/node"
+      }
+    ],
+    "routes": [
+      { "src": "/task", "methods": ["POST"], "dest": "/index.js" },
+      { "src": "/task", "methods": ["GET"], "dest": "/index.js" },
+      { "src": "/task/:id", "methods": ["GET"], "dest": "/index.js" },
+      { "src": "/task/:id", "methods": ["PATCH"], "dest": "/index.js" },
+      { "src": "/task/:id", "methods": ["DELETE"], "dest": "/index.js" },
+      { "src": "/(.*)", "dest": "/index.js" }
+    ]
+  }
+  
