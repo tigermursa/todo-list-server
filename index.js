@@ -68,14 +68,7 @@ async function run() {
     const result = await theCollection.updateOne(filter,updatedUser, options);
     res.send(result);
   });
-
-
-
-
-
-
-
-
+// patch the task status
   app.patch("/task/:id", async (req, res) => {
     const id = req.params.id;
     const { status } = req.body;
