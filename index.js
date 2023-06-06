@@ -51,6 +51,31 @@ async function run() {
     res.send(result);
   });
 
+  app.put("/task/:id", async (req, res) => {
+    const id = req.params.id;
+    const user = req.body;
+    console.log("updating user", id);
+    const filter = { _id: new ObjectId(id) };
+    const options = { upsert: true };
+    const updatedUser = {
+      $set: {
+        title: user.title,
+        description: user.description,
+        status: user.status,
+        date: user.date,
+      },
+    };
+    const result = await theCollection.updateOne(filter,updatedUser, options);
+    res.send(result);
+  });
+
+
+
+
+
+
+
+
   app.patch("/task/:id", async (req, res) => {
     const id = req.params.id;
     const { status } = req.body;
